@@ -1,23 +1,39 @@
 # AI Commerce Agent
 
-Full-stack AI-powered shopping assistant for e-commerce.
+A full-stack multimodal shopping assistant for e-commerce, supporting conversational product recommendation, text search, and image-based retrieval.
 
-**Tested on:**  
-- Windows 11 (x86_64, Python 3.13.5, Node.js v22.17.1, Npm v11.5.1)
+![AI Commerce Agent Demo](./demo.gif)
 
-## Features
+## Highlights
 
-- **ChatGPT-style conversational interface** — AI agent can answer questions, recommend products, and chat naturally with users.
-- **Product recommendations** — Supports both text-based and image-based product search, powered by OpenAI GPT and CLIP.
-- **Image search** — Upload a product photo or screenshot, and the agent will find visually similar items in a predefined catalog.
+- Built a **React + FastAPI** full-stack application for AI-assisted shopping.
+- Implemented **LLM-powered conversational search and recommendation** using OpenAI GPT.
+- Added **image-based product retrieval** with **CLIP embeddings** and **FAISS similarity search**.
+- Supports a ChatGPT-style interface with product cards, image upload, and catalog-based retrieval.
 
-## Overview
+## Architecture
 
-- **Frontend:** Modern React app (Material-UI, Markdown, product cards, image upload)
-- **Backend:** FastAPI + OpenAI GPT/CLIP/FAISS for chat and product/image search
+### Frontend
+- React
+- Material UI
+- Markdown rendering
+- Product cards
+- Image upload interface
+
+### Backend
+- FastAPI
+- OpenAI GPT for conversational reasoning
+- CLIP for image/text embeddings
+- FAISS for similarity search over the product catalog
+
+## How It Works
+
+1. User enters a text query or uploads a product image.
+2. The backend generates embeddings using GPT/CLIP-based pipelines.
+3. FAISS retrieves relevant catalog items by similarity.
+4. The system returns product recommendations and conversational responses.
 
 ## Project Structure
-
 ```
 
 .
@@ -45,16 +61,16 @@ Typical workflow:
 
 3. Visit [http://localhost:3000](http://localhost:3000) to use the agent.
 
-## Demo
-
-![AI Commerce Agent Demo](./demo.gif)
-
 ## Customization
 
 - **Add/edit products:** Edit `backend/catalog.json`
 - **Product images:** Place files in `/images/` at project root  
   (Images are for demo/research only; check copyright if deploying)
 
----
+## Environment
 
-**For technical details, configuration, and contribution guidelines, see the respective README files above.**
+Tested on:
+- Windows 11
+- Python 3.13.5
+- Node.js v22.17.1
+- npm v11.5.1
