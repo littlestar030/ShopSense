@@ -5,6 +5,6 @@ Pillow
 transformers
 python-multipart
 faiss-cpu
+numpy
+pydantic-settings
 torch
-torchvision
-torchaudio

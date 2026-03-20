@@ -1,88 +1,81 @@
-# AI Commerce Agent — Backend
+# Backend
 
-FastAPI backend for e-commerce AI agent, supporting GPT chat and image-based product search.
+The backend serves the shopping assistant API, product image files, and retrieval pipeline.
 
-## Features
+## Responsibilities
 
-- OpenAI GPT-powered chat & Q&A
-- Image search (CLIP + FAISS)
-- Serves product image URLs from project root images/
-
-## Quick Start
-
-Under the root folder (i.e., **AI-Agent-for-a-Commerce-Website**), run the following:
-
-```bash
-# For GPU acceleration, first manually install the appropriate CUDA version of PyTorch:
-# See: https://pytorch.org/get-started/locally/
-# Example for CUDA 12.8:
-pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
-
-# If using CPU only, you can skip the above command.
-pip install -r requirements.txt
-
-# Set environment variables:
-# Linux/Mac:
-export OPENAI_API_KEY=sk-...
-
-# Windows (cmd):
-set OPENAI_API_KEY=sk-...
-
-# Windows (PowerShell):
-$env:OPENAI_API_KEY="sk-..."
-````
-
-Start the server:
-
-```bash
-uvicorn backend.main:app --reload
-```
-
-* API root: [http://localhost:8000](http://localhost:8000)
-* Product images: see project `images/` directory at the repo root
+- conversational routing and response generation
+- text-based product retrieval
+- image-based product retrieval
+- multimodal retrieval
+- index artifact management
+- lightweight in-memory conversation history
+- lightweight persistent personalization via SQLite
+- health and readiness endpoints
 
 ## Endpoints
 
-| Endpoint      | Method | Description                |
-| ------------- | ------ | -------------------------- |
-| /chat         | POST   | Text/product chat (JSON)   |
-| /search-image | POST   | Image-based product search |
-| /reset-memory | POST   | Reset user conversation    |
+| Endpoint | Method | Description |
+| --- | --- | --- |
+| `/healthz` | GET | Liveness check |
+| `/readyz` | GET | Readiness check including retrieval indexes |
+| `/chat` | POST | Text chat and product recommendation |
+| `/search-image` | POST | Image-based product search |
+| `/search-similar-product` | POST | Reuse a catalog product image for similar-item search |
+| `/chat-multimodal` | POST | Text + image multimodal search |
+| `/reset-memory` | POST | Reset conversation memory for the current session |
 
-## Env Vars
+## Configuration
 
-* `OPENAI_API_KEY` — Your OpenAI key (**required**)
-* `USE_MOCK_OPENAI` — Any value for demo/offline mode
+Environment variables are read from the project root `.env`.
 
-## Product Images & Copyright
+Important settings:
 
-* Product images are located at the repo root in `images/`.
-* Images are collected from the internet and for demo/research only;
-  if using this project publicly, please check and replace with your own assets as needed.
+- `OPENAI_API_KEY`
+- `USE_MOCK_OPENAI`
+- `CHAT_MODEL`
+- `TEXT_EMBEDDING_MODEL`
+- `CLIP_MODEL_NAME`
+- `HF_TOKEN`
+- `THIRD_PARTY_LOG_LEVEL`
+- `ALLOWED_ORIGINS`
+- `AUTO_BUILD_INDEXES`
+- `FORCE_REBUILD_INDEXES`
+- `ENABLE_BACKGROUND_WARMUP`
+- `WARMUP_CLIP_MODEL`
+- `ENABLE_PERSONALIZATION`
 
-## Technology Choices & Rationale
+Start from the root `.env.example`.
 
-* **FastAPI**
-  A modern, high-performance web framework for building APIs with Python 3.7+. It provides automatic OpenAPI docs, async support, and excellent developer ergonomics.
+## Local Setup
 
-* **OpenAI GPT (via openai-py)**
-  Used for natural language conversation, product Q\&A, and recommendations. OpenAI’s models provide robust, production-ready language understanding with minimal setup.
+```bash
+pip install -r requirements.txt
+python -m backend.prepare_kaggle_catalog
+python -m backend.build_indexes
+python -m uvicorn backend.main:app
+```
 
-* **CLIP + transformers**
-  CLIP enables semantic image understanding and comparison; Huggingface’s `transformers` library allows easy integration and model management for both text and image pipelines.
+## Retrieval Indexes
 
-* **FAISS**
-  Facebook’s FAISS library enables fast, efficient vector similarity search for retrieving relevant products from the catalog based on embeddings.
+Indexes are built into `backend/.artifacts/indexes/`.
 
-* **Uvicorn**
-  Lightweight ASGI server, pairs naturally with FastAPI for local development and production deployment.
+- `python -m backend.build_indexes` builds them when missing or stale
+- `python -m backend.build_indexes --force` rebuilds them explicitly
+- app startup stays lightweight; indexes load lazily on readiness checks or first retrieval request
+- by default, the backend also starts a background warmup thread to preload retrieval resources after startup
 
-* **Pillow**
-  For robust image file handling and manipulation.
+## Catalog Data
 
-These choices provide a highly scalable, modern backend for AI-powered product chat and search, making it easy to extend or swap models and adapt to GPU/CPU setups as needed.
+The active catalog now lives at `backend/data/catalog/products.json`.
 
----
+- `python -m backend.prepare_kaggle_catalog` generates a cleaned catalog from `dataset/styles.csv`
+- default output is a balanced subset sized for local development and manageable embedding costs
+- use `python -m backend.prepare_kaggle_catalog --max-products 3000` to scale up gradually
+- the processed dataset includes richer metadata such as inferred brand, color, material, style, season, price band, ratings, and inventory status
 
-**Edit products in `catalog.json`.
-See code comments for more info.**
+## Notes
+
+- Product images are served from `dataset/images/`.
+- The current memory layer is lightweight; conversation turns stay in memory and personalization is persisted in SQLite.
+- Product assets in this repo should be treated as demo assets unless you replace them with your own licensed files.

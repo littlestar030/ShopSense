@@ -1,40 +1,41 @@
-// ChatInput.jsx
-import React, { useState, useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import {
   Box,
-  TextField,
+  Chip,
   IconButton,
   Menu,
   MenuItem,
+  TextField,
   Tooltip,
+  Typography,
 } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add'
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward'
-import StopIcon from '@mui/icons-material/Stop'
 import PhotoCameraIcon from '@mui/icons-material/PhotoCamera'
+import StopIcon from '@mui/icons-material/Stop'
 
 /**
- * Chat input bar for sending text and uploading images.
- * Disables input when the assistant is generating.
+ * Chat input bar for sending text, image-only, or multimodal messages.
  */
 export default function ChatInput({
   onSend,
-  onUpload,
   disabled,
   isGenerating,
+  onStop,
 }) {
   const [text, setText] = useState('')
+  const [attachedFile, setAttachedFile] = useState(null)
   const [anchorEl, setAnchorEl] = useState(null)
   const menuOpen = Boolean(anchorEl)
   const fileInputRef = useRef()
 
-  // Handles text submit (Enter or send button)
   const handleSubmit = (e) => {
     e.preventDefault()
     const trimmed = text.trim()
-    if (!trimmed || disabled || isGenerating) return
-    onSend(trimmed)
+    if ((!trimmed && !attachedFile) || disabled || isGenerating) return
+    onSend(trimmed, attachedFile)
     setText('')
+    setAttachedFile(null)
   }
 
   const openMenu = (e) => setAnchorEl(e.currentTarget)
@@ -50,12 +51,34 @@ export default function ChatInput({
         pb: 1,
       }}
     >
+      {attachedFile ? (
+        <Box
+          sx={{
+            mb: 1,
+            px: 1,
+            display: 'flex',
+            alignItems: 'center',
+            gap: 1,
+            flexWrap: 'wrap',
+          }}
+        >
+          <Chip
+            label={attachedFile.name}
+            onDelete={() => setAttachedFile(null)}
+            size="small"
+          />
+          <Typography variant="caption" color="text.secondary">
+            Add text to combine image + language search, or send image-only.
+          </Typography>
+        </Box>
+      ) : null}
+
       <TextField
         multiline
         minRows={2}
         variant="outlined"
         fullWidth
-        placeholder="Type your message…"
+        placeholder={attachedFile ? 'Add optional text for this image...' : 'Type your message...'}
         value={text}
         onChange={(e) => setText(e.target.value)}
         disabled={disabled}
@@ -65,7 +88,6 @@ export default function ChatInput({
             pb: '3rem',
           },
         }}
-        // Enter: send; Shift+Enter: newline
         onKeyDown={(e) => {
           if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault()
@@ -74,7 +96,6 @@ export default function ChatInput({
         }}
       />
 
-      {/* "+" button at bottom-left */}
       <IconButton
         onClick={openMenu}
         disabled={disabled || isGenerating}
@@ -87,10 +108,10 @@ export default function ChatInput({
         <AddIcon />
       </IconButton>
 
-      {/* Send/Stop button at bottom-right */}
       <IconButton
-        type="submit"
-        disabled={disabled || isGenerating}
+        type={isGenerating ? 'button' : 'submit'}
+        onClick={isGenerating ? onStop : undefined}
+        disabled={disabled}
         sx={{
           position: 'absolute',
           bottom: 8,
@@ -100,7 +121,6 @@ export default function ChatInput({
         {isGenerating ? <StopIcon /> : <ArrowUpwardIcon />}
       </IconButton>
 
-      {/* Dropdown menu for image upload */}
       <Menu
         anchorEl={anchorEl}
         open={menuOpen}
@@ -115,7 +135,7 @@ export default function ChatInput({
           }}
           disableRipple
         >
-          <Tooltip title="Upload an image to find similar products">
+          <Tooltip title="Attach an image for multimodal or image-only search">
             <IconButton
               size="small"
               sx={{ p: 0.5 }}
@@ -127,7 +147,6 @@ export default function ChatInput({
         </MenuItem>
       </Menu>
 
-      {/* Hidden file input, controlled by ref */}
       <input
         ref={fileInputRef}
         hidden
@@ -135,7 +154,7 @@ export default function ChatInput({
         type="file"
         onChange={(e) => {
           if (e.target.files?.[0]) {
-            onUpload(e.target.files[0])
+            setAttachedFile(e.target.files[0])
             e.target.value = ''
           }
         }}

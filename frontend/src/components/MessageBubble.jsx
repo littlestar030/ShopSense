@@ -1,4 +1,3 @@
-// MessageBubble.jsx
 import React from 'react'
 import { Box, Avatar, Stack, Typography } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
@@ -7,13 +6,11 @@ import ReactMarkdown from 'react-markdown'
 
 /**
  * Single message bubble, renders user/assistant messages and images.
- * Assistant supports markdown; user uses plain text.
  */
 export default function MessageBubble({ role, content, onImageLoad }) {
   const theme = useTheme()
   const isUser = role === 'user'
 
-  // Dynamic color for user/assistant
   const userBg = theme.palette.primary.main
   const userColor = theme.palette.primary.contrastText
   const assistantBg = theme.palette.background.paper
@@ -27,14 +24,12 @@ export default function MessageBubble({ role, content, onImageLoad }) {
       mb={1}
       px={1}
     >
-      {/* Assistant avatar */}
       {!isUser && (
         <Avatar sx={{ bgcolor: theme.palette.grey[500] }}>
           <RobotIcon />
         </Avatar>
       )}
 
-      {/* Message bubble (image, markdown, or plain) */}
       <Box
         sx={{
           maxWidth: '70%',
@@ -50,18 +45,25 @@ export default function MessageBubble({ role, content, onImageLoad }) {
         }}
       >
         {typeof content === 'object' && content?.image ? (
-          <img
-            src={content.image}
-            alt={isUser ? "uploaded by user" : "uploaded by assistant"}
-            style={{
-              display: 'block',
-              maxWidth: 220,
-              maxHeight: 220,
-              borderRadius: 8,
-              objectFit: 'cover',
-            }}
-            onLoad={onImageLoad}
-          />
+          <Box>
+            {content.text ? (
+              <Typography variant="body2" sx={{ mb: 1 }}>
+                {content.text}
+              </Typography>
+            ) : null}
+            <img
+              src={content.image}
+              alt={isUser ? 'uploaded by user' : 'uploaded by assistant'}
+              style={{
+                display: 'block',
+                maxWidth: 220,
+                maxHeight: 220,
+                borderRadius: 8,
+                objectFit: 'cover',
+              }}
+              onLoad={onImageLoad}
+            />
+          </Box>
         ) : isUser ? (
           <Typography variant="body2">{content}</Typography>
         ) : (
@@ -80,7 +82,6 @@ export default function MessageBubble({ role, content, onImageLoad }) {
         )}
       </Box>
 
-      {/* User avatar */}
       {isUser && (
         <Avatar sx={{ bgcolor: theme.palette.primary.light }}>
           <UserIcon />

@@ -1,29 +1,23 @@
-// App.jsx
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import {
-  Box,
   AppBar,
-  Toolbar,
-  Typography,
+  Box,
   IconButton,
   Snackbar,
+  Toolbar,
+  Typography,
 } from '@mui/material'
 import {
-  LightMode as LightModeIcon,
   DarkMode as DarkModeIcon,
+  LightMode as LightModeIcon,
 } from '@mui/icons-material'
 
-import ChatWindow from './components/ChatWindow'
 import ChatInput from './components/ChatInput'
+import ChatWindow from './components/ChatWindow'
 
-/**
- * Root component for the AI Commerce Assistant frontend.
- * Handles chat state, backend requests, and streaming (typewriter) assistant replies.
- */
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8000'
 
 export default function App({ mode, toggleMode }) {
-  // Main chat state and UI control
   const [messages, setMessages] = useState([])
   const [loading, setLoading] = useState(false)
   const [errorMsg, setErrorMsg] = useState('')
@@ -33,15 +27,12 @@ export default function App({ mode, toggleMode }) {
 
   const scrollToBottom = () => bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
 
-  // Scroll to latest message whenever messages/streaming/animation changes
   useEffect(() => {
     scrollToBottom()
   }, [messages, loading, streamingMessage])
 
-  // Show error in Snackbar
   const showError = (msg) => setErrorMsg(msg)
 
-  // Interrupt ongoing backend or streaming response
   const handleStop = () => {
     if (abortCtrlRef.current) {
       abortCtrlRef.current.abort()
@@ -51,11 +42,6 @@ export default function App({ mode, toggleMode }) {
     setStreamingMessage(null)
   }
 
-  /**
-   * Streams assistant response to UI as a typewriter animation.
-   * @param {string} fullText - Full response to stream out.
-   * @param {function=} onDone - Optional callback after streaming ends.
-   */
   const streamAssistantReply = (fullText, onDone) => {
     let i = 0
     setStreamingMessage('')
@@ -66,7 +52,7 @@ export default function App({ mode, toggleMode }) {
         setTimeout(nextChar, 18)
       } else {
         setMessages((m) => [
-          ...m.slice(0, m.length - 1), // Replace streaming with final
+          ...m.slice(0, m.length - 1),
           { role: 'assistant', content: fullText }
         ])
         setStreamingMessage(null)
@@ -76,38 +62,95 @@ export default function App({ mode, toggleMode }) {
     nextChar()
   }
 
-  // Sends a text message, triggers assistant response with optional product cards
-  const sendText = async (text) => {
-    if (!text) return
-    setMessages((m) => [...m, { role: 'user', content: text }])
+  const addAssistantResponse = (data) => {
+    if (
+      data.type === 'chat' ||
+      data.type === 'recommendation' ||
+      data.type === 'image-search' ||
+      data.type === 'multimodal-search'
+    ) {
+      setMessages((m) => [
+        ...m,
+        { role: 'assistant', content: '', isStreaming: true }
+      ])
+      streamAssistantReply(data.response, () => {
+        if (data.products && data.products.length > 0) {
+          setMessages((m) => [
+            ...m,
+            ...data.products.map((p) => ({ product: p }))
+          ])
+        }
+      })
+      return true
+    }
+    return false
+  }
+
+  const fileToDataUrl = async (file) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader()
+      reader.onload = (e) => resolve(e.target.result)
+      reader.onerror = reject
+      reader.readAsDataURL(file)
+    })
+  }
+
+  const buildProductImageUrl = (imagePath) => {
+    if (!imagePath) return null
+    if (imagePath.startsWith('http')) return imagePath
+    const filename = imagePath.startsWith('images/')
+      ? imagePath.slice('images/'.length)
+      : imagePath.replace(/^\/+/, '')
+    return `${BACKEND_URL}/images/${filename}`
+  }
+
+  const sendMessage = async (text, file = null) => {
+    if (!text && !file) return
+
+    let previewUrl = null
+    if (file) {
+      previewUrl = await fileToDataUrl(file)
+    }
+
+    setMessages((m) => [
+      ...m,
+      {
+        role: 'user',
+        content: file ? { text, image: previewUrl } : text
+      }
+    ])
+
     setLoading(true)
     const ctrl = new AbortController()
     abortCtrlRef.current = ctrl
 
     try {
-      const res = await fetch(`${BACKEND_URL}/chat`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: text }),
-        signal: ctrl.signal,
-      })
-      const data = await res.json()
-
-      if (data.type === 'chat' || data.type === 'recommendation') {
-        setMessages((m) => [
-          ...m,
-          { role: 'assistant', content: '', isStreaming: true }
-        ])
-        streamAssistantReply(data.response, () => {
-          if (data.products && data.products.length > 0) {
-            setMessages((m) => [
-              ...m,
-              ...data.products.map((p) => ({ product: p }))
-            ])
-          }
+      let res
+      if (file) {
+        const form = new FormData()
+        form.append('message', text)
+        form.append('file', file)
+        res = await fetch(`${BACKEND_URL}/chat-multimodal`, {
+          method: 'POST',
+          body: form,
+          signal: ctrl.signal,
         })
-        return
+      } else {
+        res = await fetch(`${BACKEND_URL}/chat`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: text }),
+          signal: ctrl.signal,
+        })
       }
+
+      const data = await res.json()
+      if (addAssistantResponse(data)) return
+
+      setMessages((m) => [
+        ...m,
+        { role: 'assistant', content: 'Unexpected backend response.' }
+      ])
     } catch (e) {
       if (e.name !== 'AbortError') showError('Failed to contact backend.')
     } finally {
@@ -116,58 +159,43 @@ export default function App({ mode, toggleMode }) {
     }
   }
 
-  // Sends an image, previews locally, uploads to backend, streams assistant reply if found
-  const sendImage = async (file) => {
-    if (!file) return
+  const handleSearchSimilar = async (product) => {
+    setMessages((m) => [
+      ...m,
+      {
+        role: 'user',
+        content: {
+          text: `Find products visually similar to ${product.name}`,
+          image: buildProductImageUrl(product.image_path),
+        },
+      }
+    ])
 
-    // Local preview in chat
-    const dataUrl = await new Promise((resolve, reject) => {
-      const reader = new FileReader()
-      reader.onload = (e) => resolve(e.target.result)
-      reader.onerror = reject
-      reader.readAsDataURL(file)
-    })
-    setMessages((m) => [...m, { role: 'user', content: { image: dataUrl } }])
     setLoading(true)
+    const ctrl = new AbortController()
+    abortCtrlRef.current = ctrl
 
-    // Upload image to backend
-    const form = new FormData()
-    form.append('file', file)
     try {
-      const res = await fetch(`${BACKEND_URL}/search-image`, {
+      const res = await fetch(`${BACKEND_URL}/search-similar-product`, {
         method: 'POST',
-        body: form,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ product_id: product.id }),
+        signal: ctrl.signal,
       })
       const data = await res.json()
-      if (data.type === 'image-search') {
-        setMessages((m) => [
-          ...m,
-          { role: 'assistant', content: '', isStreaming: true }
-        ])
-        streamAssistantReply(data.response, () => {
-          if (data.products && data.products.length > 0) {
-            setMessages((m) => [
-              ...m,
-              ...data.products.map((p) => ({ product: p }))
-            ])
-          }
-        })
-        return
-      } else {
-        setMessages((m) => [
-          ...m,
-          { role: 'assistant', content: 'Unexpected image search response.' }
-        ])
-      }
+      if (addAssistantResponse(data)) return
+      setMessages((m) => [
+        ...m,
+        { role: 'assistant', content: 'Unexpected backend response.' }
+      ])
     } catch (e) {
-      if (e.name !== 'AbortError') showError('Image search failed.')
+      if (e.name !== 'AbortError') showError('Failed to reuse this product image for search.')
     } finally {
       setLoading(false)
       abortCtrlRef.current = null
     }
   }
 
-  // Show streaming message if in progress
   const displayMessages =
     streamingMessage !== null
       ? [
@@ -190,7 +218,12 @@ export default function App({ mode, toggleMode }) {
       </AppBar>
 
       <Box flex={1} overflow="auto" p={2} bgcolor="background.default">
-        <ChatWindow messages={displayMessages} loading={loading} onImageLoad={scrollToBottom} />
+        <ChatWindow
+          messages={displayMessages}
+          loading={loading}
+          onImageLoad={scrollToBottom}
+          onSearchSimilar={handleSearchSimilar}
+        />
         <div ref={bottomRef} />
       </Box>
 
@@ -203,8 +236,7 @@ export default function App({ mode, toggleMode }) {
       >
         <Box width="100%" maxWidth="800px">
           <ChatInput
-            onSend={sendText}
-            onUpload={sendImage}
+            onSend={sendMessage}
             disabled={loading || streamingMessage !== null}
             isGenerating={loading || streamingMessage !== null}
             onStop={handleStop}

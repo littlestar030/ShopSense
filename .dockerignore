@@ -1,0 +1,11 @@
+.git
+.gitignore
+ai-env
+backend/.artifacts
+backend/__pycache__
+frontend/node_modules
+frontend/dist
+*.log
+*.pyc
+.env
+.env.*
