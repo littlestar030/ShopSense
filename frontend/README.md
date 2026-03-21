@@ -1,6 +1,6 @@
 # Frontend
 
-The frontend is a React chat UI for the shopping assistant.
+The frontend is the React chat UI for the shopping assistant.
 
 ## Features
 
@@ -13,12 +13,14 @@ The frontend is a React chat UI for the shopping assistant.
 ## Local Setup
 
 ```bash
+make install-frontend
 cd frontend
-npm install
 npm run dev
 ```
 
-To override the backend URL, create `frontend/.env` manually and set:
+The frontend expects the backend at `http://localhost:8000` during local development.
+
+If you need to override the backend URL manually for a standalone frontend run, create `frontend/.env` and set:
 
 ```bash
 VITE_BACKEND_URL=http://localhost:8000

@@ -1,0 +1,1933 @@
+[
+  {
+    "id": "text_running_shoes",
+    "mode": "text",
+    "query": "lightweight running shoes for daily jogs",
+    "latency_ms": 433.91,
+    "candidate_pool": [
+      {
+        "id": "43345",
+        "name": "Reebok Men Olive Blaze Ultra Casual Shoes",
+        "category": "footwear",
+        "subcategory": "casual_shoes",
+        "match_debug": {
+          "text_score": 1.0,
+          "lexical_score": 1.0,
+          "image_score": 0.0,
+          "intent_seed_score": 0.0,
+          "base_hybrid_score": 0.8,
+          "hybrid_score": 0.8,
+          "matched_modalities": [
+            "text"
+          ],
+          "match_reasons": []
+        }
+      },
+      {
+        "id": "25414",
+        "name": "Nike Men 2.04 SL White Sports Shoes",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.4545,
+          "lexical_score": 0.4253,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.5548,
+          "hybrid_score": 0.5548,
+          "matched_modalities": [
+            "text"
+          ],
+          "match_reasons": []
+        }
+      },
+      {
+        "id": "22693",
+        "name": "Nike Men Air Max +2009 Grey Sports Shoes",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.2727,
+          "lexical_score": 0.4253,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.4639,
+          "hybrid_score": 0.4639,
+          "matched_modalities": [
+            "text"
+          ],
+          "match_reasons": []
+        }
+      },
+      {
+        "id": "25460",
+        "name": "Nike Women Dart 9 MSL White Sports Shoes",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.1818,
+          "lexical_score": 0.4253,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.4185,
+          "hybrid_score": 0.4185,
+          "matched_modalities": [
+            "text"
+          ],
+          "match_reasons": []
+        }
+      },
+      {
+        "id": "15735",
+        "name": "Nike Men Lunarfly+2 Shield Grey Sports Shoes",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.0909,
+          "lexical_score": 0.4253,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.373,
+          "hybrid_score": 0.373,
+          "matched_modalities": [
+            "text"
+          ],
+          "match_reasons": []
+        }
+      },
+      {
+        "id": "4571",
+        "name": "Nike Women Air Max Trainer Excel Purple Sports Shoes",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.0182,
+          "lexical_score": 0.4253,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.3367,
+          "hybrid_score": 0.3367,
+          "matched_modalities": [
+            "text"
+          ],
+          "match_reasons": []
+        }
+      },
+      {
+        "id": "6150",
+        "name": "Puma Unisex Tornado Silver Navy Shoes",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.0,
+          "lexical_score": 0.4253,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.3276,
+          "hybrid_score": 0.3276,
+          "matched_modalities": [
+            "text"
+          ],
+          "match_reasons": []
+        }
+      },
+      {
+        "id": "11981",
+        "name": "FILA Men Intense Black Sports Shoes",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.0,
+          "lexical_score": 0.4253,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.3276,
+          "hybrid_score": 0.3276,
+          "matched_modalities": [
+            "text"
+          ],
+          "match_reasons": []
+        }
+      },
+      {
+        "id": "4471",
+        "name": "Puma Men's Complete Itana Silver Black Red Shoes",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.0,
+          "lexical_score": 0.4253,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.3276,
+          "hybrid_score": 0.3276,
+          "matched_modalities": [
+            "text"
+          ],
+          "match_reasons": []
+        }
+      },
+      {
+        "id": "18672",
+        "name": "Fila Men Survivor Grey Sports Shoes",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.0,
+          "lexical_score": 0.4253,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.3276,
+          "hybrid_score": 0.3276,
+          "matched_modalities": [
+            "text"
+          ],
+          "match_reasons": []
+        }
+      },
+      {
+        "id": "36419",
+        "name": "Spinn Women Alliance Blue Sports Shoes",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.0,
+          "lexical_score": 0.4253,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.3276,
+          "hybrid_score": 0.3276,
+          "matched_modalities": [
+            "text"
+          ],
+          "match_reasons": []
+        }
+      },
+      {
+        "id": "43355",
+        "name": "Reebok Men Black Fuel Techno Sports Shoes",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.0,
+          "lexical_score": 0.4253,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.3276,
+          "hybrid_score": 0.3276,
+          "matched_modalities": [
+            "text"
+          ],
+          "match_reasons": []
+        }
+      }
+    ],
+    "heuristic_reranked": [
+      {
+        "id": "25414",
+        "name": "Nike Men 2.04 SL White Sports Shoes",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.4545,
+          "lexical_score": 0.4253,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.5548,
+          "hybrid_score": 1.3548,
+          "matched_modalities": [
+            "text"
+          ],
+          "match_reasons": [
+            "tag match: sports shoes",
+            "better aligned with running use",
+            "subcategory fits running intent"
+          ],
+          "personalization_score": 0.0,
+          "query_alignment_score": 0.35,
+          "query_attribute_score": 0.0,
+          "intent_filter_score": 0.3,
+          "rerank_bonus": 0.15
+        }
+      },
+      {
+        "id": "22693",
+        "name": "Nike Men Air Max +2009 Grey Sports Shoes",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.2727,
+          "lexical_score": 0.4253,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.4639,
+          "hybrid_score": 1.2639,
+          "matched_modalities": [
+            "text"
+          ],
+          "match_reasons": [
+            "tag match: sports shoes",
+            "better aligned with running use",
+            "subcategory fits running intent"
+          ],
+          "personalization_score": 0.0,
+          "query_alignment_score": 0.35,
+          "query_attribute_score": 0.0,
+          "intent_filter_score": 0.3,
+          "rerank_bonus": 0.15
+        }
+      },
+      {
+        "id": "25460",
+        "name": "Nike Women Dart 9 MSL White Sports Shoes",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.1818,
+          "lexical_score": 0.4253,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.4185,
+          "hybrid_score": 1.2185,
+          "matched_modalities": [
+            "text"
+          ],
+          "match_reasons": [
+            "tag match: sports shoes",
+            "better aligned with running use",
+            "subcategory fits running intent"
+          ],
+          "personalization_score": 0.0,
+          "query_alignment_score": 0.35,
+          "query_attribute_score": 0.0,
+          "intent_filter_score": 0.3,
+          "rerank_bonus": 0.15
+        }
+      },
+      {
+        "id": "15735",
+        "name": "Nike Men Lunarfly+2 Shield Grey Sports Shoes",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.0909,
+          "lexical_score": 0.4253,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.373,
+          "hybrid_score": 1.173,
+          "matched_modalities": [
+            "text"
+          ],
+          "match_reasons": [
+            "tag match: sports shoes",
+            "better aligned with running use",
+            "subcategory fits running intent"
+          ],
+          "personalization_score": 0.0,
+          "query_alignment_score": 0.35,
+          "query_attribute_score": 0.0,
+          "intent_filter_score": 0.3,
+          "rerank_bonus": 0.15
+        }
+      },
+      {
+        "id": "4571",
+        "name": "Nike Women Air Max Trainer Excel Purple Sports Shoes",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.0182,
+          "lexical_score": 0.4253,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.3367,
+          "hybrid_score": 1.1367,
+          "matched_modalities": [
+            "text"
+          ],
+          "match_reasons": [
+            "tag match: sports shoes",
+            "better aligned with running use",
+            "subcategory fits running intent"
+          ],
+          "personalization_score": 0.0,
+          "query_alignment_score": 0.35,
+          "query_attribute_score": 0.0,
+          "intent_filter_score": 0.3,
+          "rerank_bonus": 0.15
+        }
+      }
+    ],
+    "llm_reranked": [
+      {
+        "id": "25414",
+        "name": "Nike Men 2.04 SL White Sports Shoes",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.4545,
+          "lexical_score": 0.4253,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.5548,
+          "hybrid_score": 1.3548,
+          "matched_modalities": [
+            "text"
+          ],
+          "match_reasons": [
+            "tag match: sports shoes",
+            "better aligned with running use",
+            "subcategory fits running intent"
+          ],
+          "personalization_score": 0.0,
+          "query_alignment_score": 0.35,
+          "query_attribute_score": 0.0,
+          "intent_filter_score": 0.3,
+          "rerank_bonus": 0.15
+        }
+      },
+      {
+        "id": "22693",
+        "name": "Nike Men Air Max +2009 Grey Sports Shoes",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.2727,
+          "lexical_score": 0.4253,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.4639,
+          "hybrid_score": 1.2639,
+          "matched_modalities": [
+            "text"
+          ],
+          "match_reasons": [
+            "tag match: sports shoes",
+            "better aligned with running use",
+            "subcategory fits running intent"
+          ],
+          "personalization_score": 0.0,
+          "query_alignment_score": 0.35,
+          "query_attribute_score": 0.0,
+          "intent_filter_score": 0.3,
+          "rerank_bonus": 0.15
+        }
+      },
+      {
+        "id": "25460",
+        "name": "Nike Women Dart 9 MSL White Sports Shoes",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.1818,
+          "lexical_score": 0.4253,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.4185,
+          "hybrid_score": 1.2185,
+          "matched_modalities": [
+            "text"
+          ],
+          "match_reasons": [
+            "tag match: sports shoes",
+            "better aligned with running use",
+            "subcategory fits running intent"
+          ],
+          "personalization_score": 0.0,
+          "query_alignment_score": 0.35,
+          "query_attribute_score": 0.0,
+          "intent_filter_score": 0.3,
+          "rerank_bonus": 0.15
+        }
+      },
+      {
+        "id": "15735",
+        "name": "Nike Men Lunarfly+2 Shield Grey Sports Shoes",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.0909,
+          "lexical_score": 0.4253,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.373,
+          "hybrid_score": 1.173,
+          "matched_modalities": [
+            "text"
+          ],
+          "match_reasons": [
+            "tag match: sports shoes",
+            "better aligned with running use",
+            "subcategory fits running intent"
+          ],
+          "personalization_score": 0.0,
+          "query_alignment_score": 0.35,
+          "query_attribute_score": 0.0,
+          "intent_filter_score": 0.3,
+          "rerank_bonus": 0.15
+        }
+      },
+      {
+        "id": "4571",
+        "name": "Nike Women Air Max Trainer Excel Purple Sports Shoes",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.0182,
+          "lexical_score": 0.4253,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.3367,
+          "hybrid_score": 1.1367,
+          "matched_modalities": [
+            "text"
+          ],
+          "match_reasons": [
+            "tag match: sports shoes",
+            "better aligned with running use",
+            "subcategory fits running intent"
+          ],
+          "personalization_score": 0.0,
+          "query_alignment_score": 0.35,
+          "query_attribute_score": 0.0,
+          "intent_filter_score": 0.3,
+          "rerank_bonus": 0.15
+        }
+      }
+    ],
+    "final_results": [
+      {
+        "id": "25414",
+        "name": "Nike Men 2.04 SL White Sports Shoes",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.4545,
+          "lexical_score": 0.4253,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.5548,
+          "hybrid_score": 1.3548,
+          "matched_modalities": [
+            "text"
+          ],
+          "match_reasons": [
+            "tag match: sports shoes",
+            "better aligned with running use",
+            "subcategory fits running intent"
+          ],
+          "personalization_score": 0.0,
+          "query_alignment_score": 0.35,
+          "query_attribute_score": 0.0,
+          "intent_filter_score": 0.3,
+          "rerank_bonus": 0.15
+        }
+      },
+      {
+        "id": "22693",
+        "name": "Nike Men Air Max +2009 Grey Sports Shoes",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.2727,
+          "lexical_score": 0.4253,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.4639,
+          "hybrid_score": 1.2639,
+          "matched_modalities": [
+            "text"
+          ],
+          "match_reasons": [
+            "tag match: sports shoes",
+            "better aligned with running use",
+            "subcategory fits running intent"
+          ],
+          "personalization_score": 0.0,
+          "query_alignment_score": 0.35,
+          "query_attribute_score": 0.0,
+          "intent_filter_score": 0.3,
+          "rerank_bonus": 0.15
+        }
+      },
+      {
+        "id": "25460",
+        "name": "Nike Women Dart 9 MSL White Sports Shoes",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.1818,
+          "lexical_score": 0.4253,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.4185,
+          "hybrid_score": 1.2185,
+          "matched_modalities": [
+            "text"
+          ],
+          "match_reasons": [
+            "tag match: sports shoes",
+            "better aligned with running use",
+            "subcategory fits running intent"
+          ],
+          "personalization_score": 0.0,
+          "query_alignment_score": 0.35,
+          "query_attribute_score": 0.0,
+          "intent_filter_score": 0.3,
+          "rerank_bonus": 0.15
+        }
+      },
+      {
+        "id": "15735",
+        "name": "Nike Men Lunarfly+2 Shield Grey Sports Shoes",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.0909,
+          "lexical_score": 0.4253,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.373,
+          "hybrid_score": 1.173,
+          "matched_modalities": [
+            "text"
+          ],
+          "match_reasons": [
+            "tag match: sports shoes",
+            "better aligned with running use",
+            "subcategory fits running intent"
+          ],
+          "personalization_score": 0.0,
+          "query_alignment_score": 0.35,
+          "query_attribute_score": 0.0,
+          "intent_filter_score": 0.3,
+          "rerank_bonus": 0.15
+        }
+      },
+      {
+        "id": "4571",
+        "name": "Nike Women Air Max Trainer Excel Purple Sports Shoes",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.0182,
+          "lexical_score": 0.4253,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.3367,
+          "hybrid_score": 1.1367,
+          "matched_modalities": [
+            "text"
+          ],
+          "match_reasons": [
+            "tag match: sports shoes",
+            "better aligned with running use",
+            "subcategory fits running intent"
+          ],
+          "personalization_score": 0.0,
+          "query_alignment_score": 0.35,
+          "query_attribute_score": 0.0,
+          "intent_filter_score": 0.3,
+          "rerank_bonus": 0.15
+        }
+      }
+    ]
+  },
+  {
+    "id": "multimodal_running_from_formal",
+    "mode": "multimodal",
+    "query": "find something like this but better for running",
+    "latency_ms": 1823.57,
+    "candidate_pool": [
+      {
+        "id": "2823",
+        "name": "Lee Cooper Men's LC Formal Leather Black Shoe",
+        "category": "footwear",
+        "subcategory": "formal_shoes",
+        "match_debug": {
+          "text_score": 0.0,
+          "lexical_score": 0.0,
+          "image_score": 1.0,
+          "intent_seed_score": 0.0,
+          "base_hybrid_score": 0.8,
+          "hybrid_score": 0.8,
+          "matched_modalities": [
+            "image"
+          ],
+          "match_reasons": []
+        }
+      },
+      {
+        "id": "9701",
+        "name": "Hush Puppies Men Falcon Black Formal Shoes",
+        "category": "footwear",
+        "subcategory": "formal_shoes",
+        "match_debug": {
+          "text_score": 0.0,
+          "lexical_score": 0.0,
+          "image_score": 0.4545,
+          "intent_seed_score": 0.0,
+          "base_hybrid_score": 0.3636,
+          "hybrid_score": 0.3636,
+          "matched_modalities": [
+            "image"
+          ],
+          "match_reasons": []
+        }
+      },
+      {
+        "id": "22693",
+        "name": "Nike Men Air Max +2009 Grey Sports Shoes",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.1818,
+          "lexical_score": 0.0,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.2273,
+          "hybrid_score": 0.2273,
+          "matched_modalities": [
+            "text"
+          ],
+          "match_reasons": []
+        }
+      },
+      {
+        "id": "2825",
+        "name": "Lee Cooper Men Leather Semi Formal Black Shoe",
+        "category": "footwear",
+        "subcategory": "formal_shoes",
+        "match_debug": {
+          "text_score": 0.0,
+          "lexical_score": 0.0,
+          "image_score": 0.2727,
+          "intent_seed_score": 0.0,
+          "base_hybrid_score": 0.2182,
+          "hybrid_score": 0.2182,
+          "matched_modalities": [
+            "image"
+          ],
+          "match_reasons": []
+        }
+      },
+      {
+        "id": "5396",
+        "name": "Artengo Artengo Bad 414 I Man",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.0455,
+          "lexical_score": 0.0,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.2068,
+          "hybrid_score": 0.2068,
+          "matched_modalities": [
+            "text"
+          ],
+          "match_reasons": []
+        }
+      },
+      {
+        "id": "4571",
+        "name": "Nike Women Air Max Trainer Excel Purple Sports Shoes",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.0303,
+          "lexical_score": 0.0,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.2045,
+          "hybrid_score": 0.2045,
+          "matched_modalities": [
+            "text"
+          ],
+          "match_reasons": []
+        }
+      },
+      {
+        "id": "15735",
+        "name": "Nike Men Lunarfly+2 Shield Grey Sports Shoes",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.0,
+          "lexical_score": 0.0,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.2,
+          "hybrid_score": 0.2,
+          "matched_modalities": [],
+          "match_reasons": []
+        }
+      },
+      {
+        "id": "25414",
+        "name": "Nike Men 2.04 SL White Sports Shoes",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.0,
+          "lexical_score": 0.0,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.2,
+          "hybrid_score": 0.2,
+          "matched_modalities": [],
+          "match_reasons": []
+        }
+      },
+      {
+        "id": "25460",
+        "name": "Nike Women Dart 9 MSL White Sports Shoes",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.0,
+          "lexical_score": 0.0,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.2,
+          "hybrid_score": 0.2,
+          "matched_modalities": [],
+          "match_reasons": []
+        }
+      },
+      {
+        "id": "43355",
+        "name": "Reebok Men Black Fuel Techno Sports Shoes",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.0,
+          "lexical_score": 0.0,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.2,
+          "hybrid_score": 0.2,
+          "matched_modalities": [],
+          "match_reasons": []
+        }
+      },
+      {
+        "id": "36419",
+        "name": "Spinn Women Alliance Blue Sports Shoes",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.0,
+          "lexical_score": 0.0,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.2,
+          "hybrid_score": 0.2,
+          "matched_modalities": [],
+          "match_reasons": []
+        }
+      },
+      {
+        "id": "4477",
+        "name": "Puma Women Exsis White Silver Black Shoe",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.0,
+          "lexical_score": 0.0,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.2,
+          "hybrid_score": 0.2,
+          "matched_modalities": [],
+          "match_reasons": []
+        }
+      }
+    ],
+    "heuristic_reranked": [
+      {
+        "id": "22693",
+        "name": "Nike Men Air Max +2009 Grey Sports Shoes",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.1818,
+          "lexical_score": 0.0,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.2273,
+          "hybrid_score": 1.1273,
+          "matched_modalities": [
+            "text"
+          ],
+          "match_reasons": [
+            "semantic text similarity match",
+            "better aligned with running use",
+            "subcategory fits running intent"
+          ],
+          "personalization_score": 0.0,
+          "query_alignment_score": 0.35,
+          "query_attribute_score": 0.0,
+          "intent_filter_score": 0.45,
+          "rerank_bonus": 0.1
+        }
+      },
+      {
+        "id": "5396",
+        "name": "Artengo Artengo Bad 414 I Man",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.0455,
+          "lexical_score": 0.0,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.2068,
+          "hybrid_score": 1.1068,
+          "matched_modalities": [
+            "text"
+          ],
+          "match_reasons": [
+            "semantic text similarity match",
+            "better aligned with running use",
+            "subcategory fits running intent"
+          ],
+          "personalization_score": 0.0,
+          "query_alignment_score": 0.35,
+          "query_attribute_score": 0.0,
+          "intent_filter_score": 0.45,
+          "rerank_bonus": 0.1
+        }
+      },
+      {
+        "id": "4571",
+        "name": "Nike Women Air Max Trainer Excel Purple Sports Shoes",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.0303,
+          "lexical_score": 0.0,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.2045,
+          "hybrid_score": 1.1045,
+          "matched_modalities": [
+            "text"
+          ],
+          "match_reasons": [
+            "semantic text similarity match",
+            "better aligned with running use",
+            "subcategory fits running intent"
+          ],
+          "personalization_score": 0.0,
+          "query_alignment_score": 0.35,
+          "query_attribute_score": 0.0,
+          "intent_filter_score": 0.45,
+          "rerank_bonus": 0.1
+        }
+      },
+      {
+        "id": "15735",
+        "name": "Nike Men Lunarfly+2 Shield Grey Sports Shoes",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.0,
+          "lexical_score": 0.0,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.2,
+          "hybrid_score": 1.0,
+          "matched_modalities": [],
+          "match_reasons": [
+            "better aligned with running use",
+            "subcategory fits running intent"
+          ],
+          "personalization_score": 0.0,
+          "query_alignment_score": 0.35,
+          "query_attribute_score": 0.0,
+          "intent_filter_score": 0.45,
+          "rerank_bonus": 0.0
+        }
+      },
+      {
+        "id": "25414",
+        "name": "Nike Men 2.04 SL White Sports Shoes",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.0,
+          "lexical_score": 0.0,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.2,
+          "hybrid_score": 1.0,
+          "matched_modalities": [],
+          "match_reasons": [
+            "better aligned with running use",
+            "subcategory fits running intent"
+          ],
+          "personalization_score": 0.0,
+          "query_alignment_score": 0.35,
+          "query_attribute_score": 0.0,
+          "intent_filter_score": 0.45,
+          "rerank_bonus": 0.0
+        }
+      }
+    ],
+    "llm_reranked": [
+      {
+        "id": "15735",
+        "name": "Nike Men Lunarfly+2 Shield Grey Sports Shoes",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.0,
+          "lexical_score": 0.0,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.2,
+          "hybrid_score": 1.0,
+          "matched_modalities": [],
+          "match_reasons": [
+            "better aligned with running use",
+            "subcategory fits running intent"
+          ],
+          "personalization_score": 0.0,
+          "query_alignment_score": 0.35,
+          "query_attribute_score": 0.0,
+          "intent_filter_score": 0.45,
+          "rerank_bonus": 0.0,
+          "llm_rerank_applied": true,
+          "llm_rerank_model": "gpt-4o-mini",
+          "llm_rerank_position": 1
+        }
+      },
+      {
+        "id": "22693",
+        "name": "Nike Men Air Max +2009 Grey Sports Shoes",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.1818,
+          "lexical_score": 0.0,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.2273,
+          "hybrid_score": 1.1273,
+          "matched_modalities": [
+            "text"
+          ],
+          "match_reasons": [
+            "semantic text similarity match",
+            "better aligned with running use",
+            "subcategory fits running intent"
+          ],
+          "personalization_score": 0.0,
+          "query_alignment_score": 0.35,
+          "query_attribute_score": 0.0,
+          "intent_filter_score": 0.45,
+          "rerank_bonus": 0.1,
+          "llm_rerank_applied": true,
+          "llm_rerank_model": "gpt-4o-mini",
+          "llm_rerank_position": 2
+        }
+      },
+      {
+        "id": "5396",
+        "name": "Artengo Artengo Bad 414 I Man",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.0455,
+          "lexical_score": 0.0,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.2068,
+          "hybrid_score": 1.1068,
+          "matched_modalities": [
+            "text"
+          ],
+          "match_reasons": [
+            "semantic text similarity match",
+            "better aligned with running use",
+            "subcategory fits running intent"
+          ],
+          "personalization_score": 0.0,
+          "query_alignment_score": 0.35,
+          "query_attribute_score": 0.0,
+          "intent_filter_score": 0.45,
+          "rerank_bonus": 0.1,
+          "llm_rerank_applied": true,
+          "llm_rerank_model": "gpt-4o-mini",
+          "llm_rerank_position": 3
+        }
+      },
+      {
+        "id": "4571",
+        "name": "Nike Women Air Max Trainer Excel Purple Sports Shoes",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.0303,
+          "lexical_score": 0.0,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.2045,
+          "hybrid_score": 1.1045,
+          "matched_modalities": [
+            "text"
+          ],
+          "match_reasons": [
+            "semantic text similarity match",
+            "better aligned with running use",
+            "subcategory fits running intent"
+          ],
+          "personalization_score": 0.0,
+          "query_alignment_score": 0.35,
+          "query_attribute_score": 0.0,
+          "intent_filter_score": 0.45,
+          "rerank_bonus": 0.1,
+          "llm_rerank_applied": true,
+          "llm_rerank_model": "gpt-4o-mini",
+          "llm_rerank_position": 4
+        }
+      },
+      {
+        "id": "25414",
+        "name": "Nike Men 2.04 SL White Sports Shoes",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.0,
+          "lexical_score": 0.0,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.2,
+          "hybrid_score": 1.0,
+          "matched_modalities": [],
+          "match_reasons": [
+            "better aligned with running use",
+            "subcategory fits running intent"
+          ],
+          "personalization_score": 0.0,
+          "query_alignment_score": 0.35,
+          "query_attribute_score": 0.0,
+          "intent_filter_score": 0.45,
+          "rerank_bonus": 0.0,
+          "llm_rerank_applied": true,
+          "llm_rerank_model": "gpt-4o-mini",
+          "llm_rerank_position": 5
+        }
+      }
+    ],
+    "final_results": [
+      {
+        "id": "15735",
+        "name": "Nike Men Lunarfly+2 Shield Grey Sports Shoes",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.0,
+          "lexical_score": 0.0,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.2,
+          "hybrid_score": 1.0,
+          "matched_modalities": [],
+          "match_reasons": [
+            "better aligned with running use",
+            "subcategory fits running intent"
+          ],
+          "personalization_score": 0.0,
+          "query_alignment_score": 0.35,
+          "query_attribute_score": 0.0,
+          "intent_filter_score": 0.45,
+          "rerank_bonus": 0.0,
+          "llm_rerank_applied": true,
+          "llm_rerank_model": "gpt-4o-mini",
+          "llm_rerank_position": 1
+        }
+      },
+      {
+        "id": "22693",
+        "name": "Nike Men Air Max +2009 Grey Sports Shoes",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.1818,
+          "lexical_score": 0.0,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.2273,
+          "hybrid_score": 1.1273,
+          "matched_modalities": [
+            "text"
+          ],
+          "match_reasons": [
+            "semantic text similarity match",
+            "better aligned with running use",
+            "subcategory fits running intent"
+          ],
+          "personalization_score": 0.0,
+          "query_alignment_score": 0.35,
+          "query_attribute_score": 0.0,
+          "intent_filter_score": 0.45,
+          "rerank_bonus": 0.1,
+          "llm_rerank_applied": true,
+          "llm_rerank_model": "gpt-4o-mini",
+          "llm_rerank_position": 2
+        }
+      },
+      {
+        "id": "5396",
+        "name": "Artengo Artengo Bad 414 I Man",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.0455,
+          "lexical_score": 0.0,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.2068,
+          "hybrid_score": 1.1068,
+          "matched_modalities": [
+            "text"
+          ],
+          "match_reasons": [
+            "semantic text similarity match",
+            "better aligned with running use",
+            "subcategory fits running intent"
+          ],
+          "personalization_score": 0.0,
+          "query_alignment_score": 0.35,
+          "query_attribute_score": 0.0,
+          "intent_filter_score": 0.45,
+          "rerank_bonus": 0.1,
+          "llm_rerank_applied": true,
+          "llm_rerank_model": "gpt-4o-mini",
+          "llm_rerank_position": 3
+        }
+      },
+      {
+        "id": "4571",
+        "name": "Nike Women Air Max Trainer Excel Purple Sports Shoes",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.0303,
+          "lexical_score": 0.0,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.2045,
+          "hybrid_score": 1.1045,
+          "matched_modalities": [
+            "text"
+          ],
+          "match_reasons": [
+            "semantic text similarity match",
+            "better aligned with running use",
+            "subcategory fits running intent"
+          ],
+          "personalization_score": 0.0,
+          "query_alignment_score": 0.35,
+          "query_attribute_score": 0.0,
+          "intent_filter_score": 0.45,
+          "rerank_bonus": 0.1,
+          "llm_rerank_applied": true,
+          "llm_rerank_model": "gpt-4o-mini",
+          "llm_rerank_position": 4
+        }
+      },
+      {
+        "id": "25414",
+        "name": "Nike Men 2.04 SL White Sports Shoes",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.0,
+          "lexical_score": 0.0,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.2,
+          "hybrid_score": 1.0,
+          "matched_modalities": [],
+          "match_reasons": [
+            "better aligned with running use",
+            "subcategory fits running intent"
+          ],
+          "personalization_score": 0.0,
+          "query_alignment_score": 0.35,
+          "query_attribute_score": 0.0,
+          "intent_filter_score": 0.45,
+          "rerank_bonus": 0.0,
+          "llm_rerank_applied": true,
+          "llm_rerank_model": "gpt-4o-mini",
+          "llm_rerank_position": 5
+        }
+      }
+    ]
+  },
+  {
+    "id": "multimodal_basketball_from_sandal",
+    "mode": "multimodal",
+    "query": "find something like this but better for basketball",
+    "latency_ms": 1930.34,
+    "candidate_pool": [
+      {
+        "id": "3216",
+        "name": "Carlton London Men Brown Sandal",
+        "category": "footwear",
+        "subcategory": "sandals",
+        "match_debug": {
+          "text_score": 0.0,
+          "lexical_score": 0.0,
+          "image_score": 1.0,
+          "intent_seed_score": 0.0,
+          "base_hybrid_score": 0.8,
+          "hybrid_score": 0.8,
+          "matched_modalities": [
+            "image"
+          ],
+          "match_reasons": []
+        }
+      },
+      {
+        "id": "42713",
+        "name": "Rocia Women Black Sandals",
+        "category": "footwear",
+        "subcategory": "flats",
+        "match_debug": {
+          "text_score": 0.0,
+          "lexical_score": 0.0,
+          "image_score": 0.4545,
+          "intent_seed_score": 0.0,
+          "base_hybrid_score": 0.3636,
+          "hybrid_score": 0.3636,
+          "matched_modalities": [
+            "image"
+          ],
+          "match_reasons": []
+        }
+      },
+      {
+        "id": "5396",
+        "name": "Artengo Artengo Bad 414 I Man",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 1.0,
+          "lexical_score": 0.0,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.35,
+          "hybrid_score": 0.35,
+          "matched_modalities": [
+            "text"
+          ],
+          "match_reasons": []
+        }
+      },
+      {
+        "id": "5242",
+        "name": "Reebok Men's Zigdhoni White Shoe",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.4545,
+          "lexical_score": 0.0,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.2682,
+          "hybrid_score": 0.2682,
+          "matched_modalities": [
+            "text"
+          ],
+          "match_reasons": []
+        }
+      },
+      {
+        "id": "17412",
+        "name": "Lotto Men T-Effect IV White Sports Shoe",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.2727,
+          "lexical_score": 0.0,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.2409,
+          "hybrid_score": 0.2409,
+          "matched_modalities": [
+            "text"
+          ],
+          "match_reasons": []
+        }
+      },
+      {
+        "id": "25414",
+        "name": "Nike Men 2.04 SL White Sports Shoes",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.1273,
+          "lexical_score": 0.0,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.2191,
+          "hybrid_score": 0.2191,
+          "matched_modalities": [
+            "text"
+          ],
+          "match_reasons": []
+        }
+      },
+      {
+        "id": "22256",
+        "name": "Inc. 5 Women Casual Red Sandals",
+        "category": "footwear",
+        "subcategory": "flats",
+        "match_debug": {
+          "text_score": 0.0,
+          "lexical_score": 0.0,
+          "image_score": 0.2727,
+          "intent_seed_score": 0.0,
+          "base_hybrid_score": 0.2182,
+          "hybrid_score": 0.2182,
+          "matched_modalities": [
+            "image"
+          ],
+          "match_reasons": []
+        }
+      },
+      {
+        "id": "22693",
+        "name": "Nike Men Air Max +2009 Grey Sports Shoes",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.0909,
+          "lexical_score": 0.0,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.2136,
+          "hybrid_score": 0.2136,
+          "matched_modalities": [
+            "text"
+          ],
+          "match_reasons": []
+        }
+      },
+      {
+        "id": "4571",
+        "name": "Nike Women Air Max Trainer Excel Purple Sports Shoes",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.0649,
+          "lexical_score": 0.0,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.2097,
+          "hybrid_score": 0.2097,
+          "matched_modalities": [
+            "text"
+          ],
+          "match_reasons": []
+        }
+      },
+      {
+        "id": "25460",
+        "name": "Nike Women Dart 9 MSL White Sports Shoes",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.0083,
+          "lexical_score": 0.0,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.2012,
+          "hybrid_score": 0.2012,
+          "matched_modalities": [
+            "text"
+          ],
+          "match_reasons": []
+        }
+      },
+      {
+        "id": "15735",
+        "name": "Nike Men Lunarfly+2 Shield Grey Sports Shoes",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.0,
+          "lexical_score": 0.0,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.2,
+          "hybrid_score": 0.2,
+          "matched_modalities": [],
+          "match_reasons": []
+        }
+      },
+      {
+        "id": "43355",
+        "name": "Reebok Men Black Fuel Techno Sports Shoes",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.0,
+          "lexical_score": 0.0,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.2,
+          "hybrid_score": 0.2,
+          "matched_modalities": [],
+          "match_reasons": []
+        }
+      }
+    ],
+    "heuristic_reranked": [
+      {
+        "id": "5396",
+        "name": "Artengo Artengo Bad 414 I Man",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 1.0,
+          "lexical_score": 0.0,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.35,
+          "hybrid_score": 1.18,
+          "matched_modalities": [
+            "text"
+          ],
+          "match_reasons": [
+            "semantic text similarity match",
+            "better aligned with court use",
+            "subcategory fits basketball intent"
+          ],
+          "personalization_score": 0.0,
+          "query_alignment_score": 0.28,
+          "query_attribute_score": 0.0,
+          "intent_filter_score": 0.45,
+          "rerank_bonus": 0.1
+        }
+      },
+      {
+        "id": "5242",
+        "name": "Reebok Men's Zigdhoni White Shoe",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.4545,
+          "lexical_score": 0.0,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.2682,
+          "hybrid_score": 1.0982,
+          "matched_modalities": [
+            "text"
+          ],
+          "match_reasons": [
+            "semantic text similarity match",
+            "better aligned with court use",
+            "subcategory fits basketball intent"
+          ],
+          "personalization_score": 0.0,
+          "query_alignment_score": 0.28,
+          "query_attribute_score": 0.0,
+          "intent_filter_score": 0.45,
+          "rerank_bonus": 0.1
+        }
+      },
+      {
+        "id": "17412",
+        "name": "Lotto Men T-Effect IV White Sports Shoe",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.2727,
+          "lexical_score": 0.0,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.2409,
+          "hybrid_score": 1.0709,
+          "matched_modalities": [
+            "text"
+          ],
+          "match_reasons": [
+            "semantic text similarity match",
+            "better aligned with court use",
+            "subcategory fits basketball intent"
+          ],
+          "personalization_score": 0.0,
+          "query_alignment_score": 0.28,
+          "query_attribute_score": 0.0,
+          "intent_filter_score": 0.45,
+          "rerank_bonus": 0.1
+        }
+      },
+      {
+        "id": "25414",
+        "name": "Nike Men 2.04 SL White Sports Shoes",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.1273,
+          "lexical_score": 0.0,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.2191,
+          "hybrid_score": 1.0491,
+          "matched_modalities": [
+            "text"
+          ],
+          "match_reasons": [
+            "semantic text similarity match",
+            "better aligned with court use",
+            "subcategory fits basketball intent"
+          ],
+          "personalization_score": 0.0,
+          "query_alignment_score": 0.28,
+          "query_attribute_score": 0.0,
+          "intent_filter_score": 0.45,
+          "rerank_bonus": 0.1
+        }
+      },
+      {
+        "id": "22693",
+        "name": "Nike Men Air Max +2009 Grey Sports Shoes",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.0909,
+          "lexical_score": 0.0,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.2136,
+          "hybrid_score": 1.0436,
+          "matched_modalities": [
+            "text"
+          ],
+          "match_reasons": [
+            "semantic text similarity match",
+            "better aligned with court use",
+            "subcategory fits basketball intent"
+          ],
+          "personalization_score": 0.0,
+          "query_alignment_score": 0.28,
+          "query_attribute_score": 0.0,
+          "intent_filter_score": 0.45,
+          "rerank_bonus": 0.1
+        }
+      }
+    ],
+    "llm_reranked": [
+      {
+        "id": "25414",
+        "name": "Nike Men 2.04 SL White Sports Shoes",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.1273,
+          "lexical_score": 0.0,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.2191,
+          "hybrid_score": 1.0491,
+          "matched_modalities": [
+            "text"
+          ],
+          "match_reasons": [
+            "semantic text similarity match",
+            "better aligned with court use",
+            "subcategory fits basketball intent"
+          ],
+          "personalization_score": 0.0,
+          "query_alignment_score": 0.28,
+          "query_attribute_score": 0.0,
+          "intent_filter_score": 0.45,
+          "rerank_bonus": 0.1,
+          "llm_rerank_applied": true,
+          "llm_rerank_model": "gpt-4o-mini",
+          "llm_rerank_position": 1
+        }
+      },
+      {
+        "id": "22693",
+        "name": "Nike Men Air Max +2009 Grey Sports Shoes",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.0909,
+          "lexical_score": 0.0,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.2136,
+          "hybrid_score": 1.0436,
+          "matched_modalities": [
+            "text"
+          ],
+          "match_reasons": [
+            "semantic text similarity match",
+            "better aligned with court use",
+            "subcategory fits basketball intent"
+          ],
+          "personalization_score": 0.0,
+          "query_alignment_score": 0.28,
+          "query_attribute_score": 0.0,
+          "intent_filter_score": 0.45,
+          "rerank_bonus": 0.1,
+          "llm_rerank_applied": true,
+          "llm_rerank_model": "gpt-4o-mini",
+          "llm_rerank_position": 2
+        }
+      },
+      {
+        "id": "5396",
+        "name": "Artengo Artengo Bad 414 I Man",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 1.0,
+          "lexical_score": 0.0,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.35,
+          "hybrid_score": 1.18,
+          "matched_modalities": [
+            "text"
+          ],
+          "match_reasons": [
+            "semantic text similarity match",
+            "better aligned with court use",
+            "subcategory fits basketball intent"
+          ],
+          "personalization_score": 0.0,
+          "query_alignment_score": 0.28,
+          "query_attribute_score": 0.0,
+          "intent_filter_score": 0.45,
+          "rerank_bonus": 0.1,
+          "llm_rerank_applied": true,
+          "llm_rerank_model": "gpt-4o-mini",
+          "llm_rerank_position": 3
+        }
+      },
+      {
+        "id": "5242",
+        "name": "Reebok Men's Zigdhoni White Shoe",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.4545,
+          "lexical_score": 0.0,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.2682,
+          "hybrid_score": 1.0982,
+          "matched_modalities": [
+            "text"
+          ],
+          "match_reasons": [
+            "semantic text similarity match",
+            "better aligned with court use",
+            "subcategory fits basketball intent"
+          ],
+          "personalization_score": 0.0,
+          "query_alignment_score": 0.28,
+          "query_attribute_score": 0.0,
+          "intent_filter_score": 0.45,
+          "rerank_bonus": 0.1,
+          "llm_rerank_applied": true,
+          "llm_rerank_model": "gpt-4o-mini",
+          "llm_rerank_position": 4
+        }
+      },
+      {
+        "id": "17412",
+        "name": "Lotto Men T-Effect IV White Sports Shoe",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.2727,
+          "lexical_score": 0.0,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.2409,
+          "hybrid_score": 1.0709,
+          "matched_modalities": [
+            "text"
+          ],
+          "match_reasons": [
+            "semantic text similarity match",
+            "better aligned with court use",
+            "subcategory fits basketball intent"
+          ],
+          "personalization_score": 0.0,
+          "query_alignment_score": 0.28,
+          "query_attribute_score": 0.0,
+          "intent_filter_score": 0.45,
+          "rerank_bonus": 0.1,
+          "llm_rerank_applied": true,
+          "llm_rerank_model": "gpt-4o-mini",
+          "llm_rerank_position": 5
+        }
+      }
+    ],
+    "final_results": [
+      {
+        "id": "25414",
+        "name": "Nike Men 2.04 SL White Sports Shoes",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.1273,
+          "lexical_score": 0.0,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.2191,
+          "hybrid_score": 1.0491,
+          "matched_modalities": [
+            "text"
+          ],
+          "match_reasons": [
+            "semantic text similarity match",
+            "better aligned with court use",
+            "subcategory fits basketball intent"
+          ],
+          "personalization_score": 0.0,
+          "query_alignment_score": 0.28,
+          "query_attribute_score": 0.0,
+          "intent_filter_score": 0.45,
+          "rerank_bonus": 0.1,
+          "llm_rerank_applied": true,
+          "llm_rerank_model": "gpt-4o-mini",
+          "llm_rerank_position": 1
+        }
+      },
+      {
+        "id": "22693",
+        "name": "Nike Men Air Max +2009 Grey Sports Shoes",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.0909,
+          "lexical_score": 0.0,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.2136,
+          "hybrid_score": 1.0436,
+          "matched_modalities": [
+            "text"
+          ],
+          "match_reasons": [
+            "semantic text similarity match",
+            "better aligned with court use",
+            "subcategory fits basketball intent"
+          ],
+          "personalization_score": 0.0,
+          "query_alignment_score": 0.28,
+          "query_attribute_score": 0.0,
+          "intent_filter_score": 0.45,
+          "rerank_bonus": 0.1,
+          "llm_rerank_applied": true,
+          "llm_rerank_model": "gpt-4o-mini",
+          "llm_rerank_position": 2
+        }
+      },
+      {
+        "id": "5396",
+        "name": "Artengo Artengo Bad 414 I Man",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 1.0,
+          "lexical_score": 0.0,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.35,
+          "hybrid_score": 1.18,
+          "matched_modalities": [
+            "text"
+          ],
+          "match_reasons": [
+            "semantic text similarity match",
+            "better aligned with court use",
+            "subcategory fits basketball intent"
+          ],
+          "personalization_score": 0.0,
+          "query_alignment_score": 0.28,
+          "query_attribute_score": 0.0,
+          "intent_filter_score": 0.45,
+          "rerank_bonus": 0.1,
+          "llm_rerank_applied": true,
+          "llm_rerank_model": "gpt-4o-mini",
+          "llm_rerank_position": 3
+        }
+      },
+      {
+        "id": "5242",
+        "name": "Reebok Men's Zigdhoni White Shoe",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.4545,
+          "lexical_score": 0.0,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.2682,
+          "hybrid_score": 1.0982,
+          "matched_modalities": [
+            "text"
+          ],
+          "match_reasons": [
+            "semantic text similarity match",
+            "better aligned with court use",
+            "subcategory fits basketball intent"
+          ],
+          "personalization_score": 0.0,
+          "query_alignment_score": 0.28,
+          "query_attribute_score": 0.0,
+          "intent_filter_score": 0.45,
+          "rerank_bonus": 0.1,
+          "llm_rerank_applied": true,
+          "llm_rerank_model": "gpt-4o-mini",
+          "llm_rerank_position": 4
+        }
+      },
+      {
+        "id": "17412",
+        "name": "Lotto Men T-Effect IV White Sports Shoe",
+        "category": "footwear",
+        "subcategory": "sports_shoes",
+        "match_debug": {
+          "text_score": 0.2727,
+          "lexical_score": 0.0,
+          "image_score": 0.0,
+          "intent_seed_score": 1.0,
+          "base_hybrid_score": 0.2409,
+          "hybrid_score": 1.0709,
+          "matched_modalities": [
+            "text"
+          ],
+          "match_reasons": [
+            "semantic text similarity match",
+            "better aligned with court use",
+            "subcategory fits basketball intent"
+          ],
+          "personalization_score": 0.0,
+          "query_alignment_score": 0.28,
+          "query_attribute_score": 0.0,
+          "intent_filter_score": 0.45,
+          "rerank_bonus": 0.1,
+          "llm_rerank_applied": true,
+          "llm_rerank_model": "gpt-4o-mini",
+          "llm_rerank_position": 5
+        }
+      }
+    ]
+  }
+]

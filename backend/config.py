@@ -45,6 +45,13 @@ class Settings(BaseSettings):
     enable_background_warmup: bool = True
     warmup_clip_model: bool = True
     enable_personalization: bool = True
+    enable_reranking: bool = True
+    enable_llm_reranking: bool = False
+    llm_rerank_model: str = "gpt-4o-mini"
+    llm_rerank_top_n: int = 8
+    llm_rerank_modes: str = "multimodal"
+    llm_rerank_margin_threshold: float = 0.08
+    rerank_candidate_pool_size: int = 12
     text_top_k: int = 3
     image_top_k: int = 3
     memory_turn_limit: int = 10
@@ -56,6 +63,8 @@ class Settings(BaseSettings):
         "chat_model",
         "text_embedding_model",
         "clip_model_name",
+        "llm_rerank_model",
+        "llm_rerank_modes",
         "backend_host",
         "frontend_dev_url",
         "allowed_origins",
@@ -75,6 +84,8 @@ class Settings(BaseSettings):
         "enable_background_warmup",
         "warmup_clip_model",
         "enable_personalization",
+        "enable_reranking",
+        "enable_llm_reranking",
         mode="before",
     )
     @classmethod
@@ -96,6 +107,10 @@ class Settings(BaseSettings):
     @property
     def session_header_key(self) -> str:
         return self.session_header_name.lower()
+
+    @property
+    def normalized_llm_rerank_modes(self) -> set[str]:
+        return {item.strip().lower() for item in self.llm_rerank_modes.split(",") if item.strip()}
 
     def ensure_directories(self) -> None:
         self.images_dir.mkdir(parents=True, exist_ok=True)

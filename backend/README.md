@@ -1,6 +1,6 @@
 # Backend
 
-The backend serves the shopping assistant API, product image files, and retrieval pipeline.
+The backend contains the FastAPI application, retrieval pipeline, catalog preparation scripts, and index build utilities for the shopping assistant.
 
 ## Responsibilities
 
@@ -45,15 +45,15 @@ Important settings:
 - `WARMUP_CLIP_MODEL`
 - `ENABLE_PERSONALIZATION`
 
-Start from the root `.env.example`.
+Start from the root [`.env.example`](../.env.example).
 
 ## Local Setup
 
 ```bash
-pip install -r requirements.txt
+make install-backend
 python -m backend.prepare_kaggle_catalog
 python -m backend.build_indexes
-python -m uvicorn backend.main:app
+python -m uvicorn backend.main:app --host 0.0.0.0 --port 8000
 ```
 
 ## Retrieval Indexes
@@ -67,7 +67,7 @@ Indexes are built into `backend/.artifacts/indexes/`.
 
 ## Catalog Data
 
-The active catalog now lives at `backend/data/catalog/products.json`.
+The active catalog now lives at [backend/data/catalog/products.json](./data/catalog/products.json).
 
 - `python -m backend.prepare_kaggle_catalog` generates a cleaned catalog from `dataset/styles.csv`
 - default output is a balanced subset sized for local development and manageable embedding costs
@@ -76,6 +76,6 @@ The active catalog now lives at `backend/data/catalog/products.json`.
 
 ## Notes
 
-- Product images are served from `dataset/images/`.
+- Product images are served from `../dataset/images/`.
 - The current memory layer is lightweight; conversation turns stay in memory and personalization is persisted in SQLite.
 - Product assets in this repo should be treated as demo assets unless you replace them with your own licensed files.

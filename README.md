@@ -4,12 +4,41 @@ A full-stack AI shopping assistant built with React and FastAPI. It supports con
 
 ![AI Commerce Agent Demo](./demo.gif)
 
-## Features
+## Highlights
+
+- text, image, and multimodal product retrieval
+- hybrid search over OpenAI text embeddings, CLIP image embeddings, and lexical matching
+- second-stage reranking with intent alignment and optional LLM reranking
+- conversational shopping UX with lightweight personalization and memory
+- offline retrieval benchmark plus regression-style tests
+
+## Benchmark Snapshot
+
+Current baseline on the bundled 18-query benchmark:
+
+| Metric | Score |
+| --- | ---: |
+| Strict Hit@3 | 0.944 |
+| Strict Hit@5 | 0.944 |
+| Strict MRR | 0.889 |
+| Semantic Category Hit@3 | 1.000 |
+| Semantic Subcategory Hit@3 | 1.000 |
+
+More detail:
+
+- [docs/results.md](./docs/results.md)
+- [docs/architecture.md](./docs/architecture.md)
+- [eval/eval_retrieval.py](./eval/eval_retrieval.py)
+- [tests](./tests)
+
+## What It Demonstrates
 
 - conversational recommendation
 - multimodal retrieval
 - vector search with FAISS
 - hybrid search over text and images
+- second-stage reranking
+- optional LLM-based reranking for multimodal or ambiguous retrieval cases
 - lightweight personalization and memory
 - a user-facing product assistant UI
 
@@ -31,12 +60,21 @@ A full-stack AI shopping assistant built with React and FastAPI. It supports con
 - file-based retrieval index artifacts
 - SQLite-backed lightweight personalization
 
+More implementation detail is documented in [docs/architecture.md](./docs/architecture.md).
+
+## Demo Scenarios
+
+- Text search: broad shopping queries like running shoes, jackets, backpacks, or shorts.
+- Image search: upload a catalog-like product image and retrieve visually similar items.
+- Multimodal search: start from an image and shift intent with text such as `better for running` or `better for basketball`.
+
 ## Repository Layout
 
 ```text
 .
 |- backend/            FastAPI app, retrieval logic, config, data prep, index builder
 |- frontend/           React UI
+|- eval/               Retrieval benchmark queries and evaluation script
 |- dataset/            Local Kaggle dataset drop-in folder
 |- scripts/            Local dev scripts
 |- docker-compose.yml  Multi-container local setup
@@ -120,19 +158,15 @@ Bootstrap everything in one command:
 PREPARE_CATALOG_ON_RUN=true make dev
 ```
 
-## Run Script Automation
-
-The run script supports lightweight automation through `.env`:
+Useful development toggles:
 
 - `PREPARE_CATALOG_ON_RUN=true` to regenerate the catalog before startup
 - `BUILD_INDEXES_ON_RUN=true` to build or refresh indexes before startup
 - `FORCE_REBUILD_INDEXES_ON_RUN=true` for a forced rebuild
-- `KAGGLE_MAX_PRODUCTS`, `KAGGLE_MAX_PER_ARTICLE`, `KAGGLE_MIN_ARTICLE_COUNT`, `KAGGLE_SAMPLE_SEED`
-- `BACKEND_READY_PATH` and `BACKEND_READY_TIMEOUT` to control how `run.sh` waits for backend readiness
-- `HF_TOKEN` to reduce Hugging Face rate-limit warnings and speed up cached model access
-- `THIRD_PARTY_LOG_LEVEL` to quiet noisy library logs such as `httpx` and `huggingface_hub`
+- `HF_TOKEN` to reduce Hugging Face warnings and speed up cached model access
+- `THIRD_PARTY_LOG_LEVEL` to quiet noisy library logs
 
-If you want backend hot reload during development:
+For backend hot reload during development:
 
 ```bash
 BACKEND_RELOAD=true make dev-reload
@@ -153,7 +187,7 @@ In practice:
 
 ## Data Pipeline
 
-The active catalog lives at [backend/data/catalog/products.json](/c:/Users/wilso/Documents/GitHub/AI-Commerce-Agent/backend/data/catalog/products.json).
+The active catalog lives at [backend/data/catalog/products.json](./backend/data/catalog/products.json).
 
 The Kaggle preparation step:
 
@@ -162,13 +196,59 @@ The Kaggle preparation step:
 - samples a balanced subset instead of blindly ingesting all 44k items
 - enriches products with inferred metadata such as brand, style, material, price band, rating, and inventory status
 
+## Evaluation
+
+The repository includes a lightweight offline retrieval benchmark under [eval/queries.jsonl](./eval/queries.jsonl) and [eval/eval_retrieval.py](./eval/eval_retrieval.py).
+
+Run it with:
+
+```bash
+make eval
+make test
+```
+
+The script evaluates text, image, and multimodal queries and reports:
+
+- strict `Hit@3`
+- strict `Hit@5`
+- strict `MRR`
+- semantic category hit rate
+- semantic subcategory hit rate
+- semantic keyword hit rate
+- average latency
+
+You can also save the full results to a JSON file:
+
+```bash
+PYTHONPATH=. python eval/eval_retrieval.py --output eval/results/latest.json
+```
+
+More detail is documented in [docs/results.md](./docs/results.md).
+
 ## Docker
 
 Docker support is included for reproducible local setup and easier handoff, but the containers still expect the Kaggle dataset to be present in `dataset/`.
 
 ```bash
-docker compose up --build
+make docker-build
+make docker-up
 ```
 
 Frontend: `http://localhost:3000`  
 Backend: `http://localhost:8000`
+
+The backend image installs the CPU-only PyTorch wheel on purpose. That keeps the container build much smaller and more reliable than pulling the default Linux CUDA stack, which is unnecessary for the current Docker workflow.
+
+The default flow is:
+
+```bash
+make docker-build
+make docker-up
+```
+
+If Docker BuildKit is flaky in your WSL setup, the recommended fallback is to keep using the default `docker-up` target and switch only the build step:
+
+```bash
+make docker-build-nobuildkit
+make docker-up
+```

@@ -5,7 +5,7 @@ KAGGLE_MAX_PER_ARTICLE ?= 60
 KAGGLE_MIN_ARTICLE_COUNT ?= 20
 KAGGLE_SAMPLE_SEED ?= 42
 
-.PHONY: install install-backend install-frontend prepare-catalog prepare-catalog-small prepare-catalog-large build-indexes rebuild-indexes backend backend-reload frontend dev dev-reload dev-bootstrap docker-up docker-down run
+.PHONY: install install-backend install-frontend prepare-catalog prepare-catalog-small prepare-catalog-large build-indexes rebuild-indexes test eval eval-debug backend backend-reload frontend dev dev-reload dev-bootstrap docker-build docker-build-nobuildkit docker-up docker-down run
 
 install: install-backend install-frontend
 
@@ -30,6 +30,15 @@ build-indexes:
 rebuild-indexes:
 	$(PYTHON) -m backend.build_indexes --force
 
+test:
+	PYTHONPATH=. $(PYTHON) -m unittest discover -s tests -v
+
+eval:
+	PYTHONPATH=. $(PYTHON) eval/eval_retrieval.py
+
+eval-debug:
+	PYTHONPATH=. $(PYTHON) eval/eval_retrieval.py --debug-query text_running_shoes --debug-query multimodal_running_from_formal --debug-query multimodal_basketball_from_sandal --debug-output eval/results/debug.json
+
 backend:
 	$(PYTHON) -m uvicorn backend.main:app --host 0.0.0.0 --port 8000
 
@@ -50,8 +59,14 @@ dev-reload:
 
 run: dev
 
+docker-build:
+	docker compose build
+
+docker-build-nobuildkit:
+	DOCKER_BUILDKIT=0 docker compose build
+
 docker-up:
-	docker compose up --build
+	docker compose up
 
 docker-down:
 	docker compose down

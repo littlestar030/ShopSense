@@ -15,13 +15,55 @@ from .embeddings import (
     get_text_embedding,
     load_catalog,
 )
+from .reranking import INTENT_SUBCATEGORY_RULES, detect_query_intents, llm_rerank_products, rerank_products
 
 
 settings = get_settings()
 
+STOPWORDS = {
+    "a",
+    "an",
+    "and",
+    "are",
+    "as",
+    "at",
+    "be",
+    "better",
+    "but",
+    "by",
+    "can",
+    "could",
+    "find",
+    "for",
+    "from",
+    "i",
+    "if",
+    "in",
+    "is",
+    "it",
+    "like",
+    "me",
+    "my",
+    "of",
+    "on",
+    "or",
+    "please",
+    "show",
+    "similar",
+    "something",
+    "that",
+    "the",
+    "these",
+    "this",
+    "to",
+    "want",
+    "with",
+    "you",
+}
+
 
 def _tokenize(text: str) -> list[str]:
-    return re.findall(r"[a-z0-9]+", text.lower())
+    return [token for token in re.findall(r"[a-z0-9]+", text.lower()) if token not in STOPWORDS]
 
 
 def _product_text(product: dict[str, Any]) -> str:
@@ -73,19 +115,13 @@ def _normalize_score_map(scores: dict[str, float]) -> dict[str, float]:
 def _collect_dense_text_scores(query: str, top_k: int) -> dict[str, float]:
     embedding = get_text_embedding(query)
     results = find_similar_products_by_text(embedding, top_k=top_k)
-    scores = {}
-    for rank, product in enumerate(results):
-        scores[product["id"]] = 1.0 / (rank + 1)
-    return scores
+    return {product["id"]: 1.0 / (rank + 1) for rank, product in enumerate(results)}
 
 
 def _collect_image_scores(image, top_k: int) -> dict[str, float]:
     embedding = get_image_embedding(image)
     results = find_similar_products_by_image(embedding, top_k=top_k)
-    scores = {}
-    for rank, product in enumerate(results):
-        scores[product["id"]] = 1.0 / (rank + 1)
-    return scores
+    return {product["id"]: 1.0 / (rank + 1) for rank, product in enumerate(results)}
 
 
 def _collect_keyword_scores(query: str) -> dict[str, float]:
@@ -97,166 +133,98 @@ def _collect_keyword_scores(query: str) -> dict[str, float]:
     return scores
 
 
-def _reason_strings(query: str, product: dict[str, Any], modalities: list[str]) -> list[str]:
+def _intent_seed_scores(query: str, intents: set[str]) -> dict[str, float]:
+    if not intents:
+        return {}
+
     query_tokens = set(_tokenize(query))
-    reasons: list[str] = []
-
-    feature_hits = [feature for feature in product.get("features", []) if query_tokens & set(_tokenize(feature))]
-    tag_hits = [tag for tag in product.get("tags", []) if query_tokens & set(_tokenize(tag))]
-    use_case_hits = [use_case for use_case in product.get("use_cases", []) if query_tokens & set(_tokenize(use_case))]
-
-    if feature_hits:
-        reasons.append(f"feature match: {', '.join(feature_hits[:2])}")
-    if tag_hits:
-        reasons.append(f"tag match: {', '.join(tag_hits[:2])}")
-    if use_case_hits:
-        reasons.append(f"use case match: {', '.join(use_case_hits[:2])}")
-    if "image" in modalities:
-        reasons.append("visual similarity match")
-    if "text" in modalities and not reasons:
-        reasons.append("semantic text similarity match")
-
-    return reasons[:3]
-
-
-def _query_alignment_adjustment(query: str, product: dict[str, Any]) -> tuple[float, list[str]]:
-    tokens = set(_tokenize(query))
-    if not tokens:
-        return 0.0, []
-
-    product_text = _product_text(product).lower()
-    score = 0.0
-    reasons: list[str] = []
-
-    if tokens & {"run", "running", "jog", "jogging", "runner"}:
-        if any(term in product_text for term in ["sports_shoes", "sports shoes", "training", "cushion", "grippy outsole", "active wear"]):
-            score += 0.35
-            reasons.append("better aligned with running use")
-        if any(term in product_text for term in ["formal_shoes", "formal shoes", "office wear", "formal occasions", "polished styling"]):
-            score -= 0.60
-            reasons.append("less suitable for running")
-        elif any(term in product_text for term in ["sandals", "slippers", "flip flops", "flats", "heels"]):
-            score -= 0.32
-            reasons.append("less suitable for running")
-        elif any(term in product_text for term in ["casual_shoes", "casual shoes"]):
-            score -= 0.12
-            reasons.append("less performance-oriented for running")
-
-    if tokens & {"basketball", "court", "hoops"}:
-        if any(term in product_text for term in ["sports_shoes", "sports shoes", "court", "cushion", "grip"]):
-            score += 0.28
-            reasons.append("better aligned with court use")
-        if any(term in product_text for term in ["formal_shoes", "formal shoes", "office wear", "formal occasions"]):
-            score -= 0.45
-            reasons.append("less suitable for court use")
-        elif any(term in product_text for term in ["sandals", "slippers", "flip flops", "flats"]):
-            score -= 0.28
-            reasons.append("less suitable for court use")
-
-    if tokens & {"hike", "hiking", "trail", "trek"}:
-        if any(term in product_text for term in ["sports_shoes", "sports shoes", "backpacks", "durable", "grip"]):
-            score += 0.22
-            reasons.append("better aligned with outdoor use")
-        if any(term in product_text for term in ["heels", "flats", "formal"]):
-            score -= 0.24
-            reasons.append("less suitable for outdoor use")
-
-    return score, reasons[:2]
-
-
-def _personalization_score(product: dict[str, Any], user_profile: dict[str, Any] | None) -> tuple[float, list[str]]:
-    if not user_profile:
-        return 0.0, []
-
-    score = 0.0
-    reasons: list[str] = []
-    category_prefs = user_profile.get("preferred_categories", {})
-    tag_prefs = user_profile.get("preferred_tags", {})
-    use_case_prefs = user_profile.get("preferred_use_cases", {})
-    price_band = user_profile.get("price_band")
-
-    category = product.get("category")
-    if category and category in category_prefs:
-        score += min(category_prefs[category] * 0.08, 0.24)
-        reasons.append(f"matches your recent interest in {category}")
-
-    matching_tags = [tag for tag in product.get("tags", []) if tag in tag_prefs]
-    if matching_tags:
-        score += min(sum(tag_prefs[tag] for tag in matching_tags) * 0.04, 0.20)
-        reasons.append(f"aligned with your preferred tags: {', '.join(matching_tags[:2])}")
-
-    matching_use_cases = [use_case for use_case in product.get("use_cases", []) if use_case in use_case_prefs]
-    if matching_use_cases:
-        score += min(sum(use_case_prefs[item] for item in matching_use_cases) * 0.04, 0.20)
-        reasons.append(f"aligned with your recent use cases: {', '.join(matching_use_cases[:2])}")
-
-    price = product.get("price", 0)
-    if price_band == "low" and price <= 80:
-        score += 0.10
-        reasons.append("fits your budget preference")
-    elif price_band == "high" and price >= 120:
-        score += 0.10
-        reasons.append("fits your premium preference")
-
-    return score, reasons[:2]
+    scores: dict[str, float] = {}
+    for product in load_catalog():
+        subcategory = product.get("subcategory", "")
+        seed_score = 0.0
+        for intent in intents:
+            rules = INTENT_SUBCATEGORY_RULES[intent]
+            if subcategory in rules["allow"]:
+                seed_score = max(seed_score, 0.12)
+                text_blob = _product_text(product).lower()
+                if query_tokens & set(_tokenize(text_blob)):
+                    seed_score += 0.08
+        if seed_score > 0:
+            scores[product["id"]] = max(scores.get(product["id"], 0.0), seed_score)
+    return scores
 
 
 def _merge_candidates(
-    query: str,
     keyword_scores: dict[str, float],
     dense_scores: dict[str, float],
     image_scores: dict[str, float],
-    user_profile: dict[str, Any] | None,
-    top_k: int,
+    seed_scores: dict[str, float],
+    candidate_pool_size: int,
     text_weight: float,
     lexical_weight: float,
     image_weight: float,
-    personalization_scale: float,
-    rerank_scale: float,
 ) -> list[dict[str, Any]]:
     keyword_scores = _normalize_score_map(keyword_scores)
     dense_scores = _normalize_score_map(dense_scores)
     image_scores = _normalize_score_map(image_scores)
+    seed_scores = _normalize_score_map(seed_scores)
     product_map = {product["id"]: product for product in load_catalog()}
 
     merged: list[dict[str, Any]] = []
-    for product_id in set(keyword_scores) | set(dense_scores) | set(image_scores):
+    for product_id in set(keyword_scores) | set(dense_scores) | set(image_scores) | set(seed_scores):
         product = dict(product_map[product_id])
         text_score = dense_scores.get(product_id, 0.0)
         lexical_score = keyword_scores.get(product_id, 0.0)
-        visual_score = image_scores.get(product_id, 0.0)
+        image_score = image_scores.get(product_id, 0.0)
+        seed_score = seed_scores.get(product_id, 0.0)
 
-        hybrid_score = (
+        base_hybrid_score = (
             text_weight * text_score
             + lexical_weight * lexical_score
-            + image_weight * visual_score
+            + image_weight * image_score
+            + 0.20 * seed_score
         )
-        modalities = []
-        if text_score > 0 or lexical_score > 0:
-            modalities.append("text")
-        if visual_score > 0:
-            modalities.append("image")
-        base_reasons = _reason_strings(query, product, modalities)
-        rerank_bonus = rerank_scale * len(base_reasons)
-        personalization_bonus, personalization_reasons = _personalization_score(product, user_profile)
-        personalization_bonus *= personalization_scale
-        alignment_bonus, alignment_reasons = _query_alignment_adjustment(query, product)
-        final_score = hybrid_score + rerank_bonus + personalization_bonus + alignment_bonus
-
         product["match_debug"] = {
             "text_score": round(text_score, 4),
             "lexical_score": round(lexical_score, 4),
-            "image_score": round(visual_score, 4),
-            "personalization_score": round(personalization_bonus, 4),
-            "query_alignment_score": round(alignment_bonus, 4),
-            "hybrid_score": round(final_score, 4),
-            "matched_modalities": modalities,
-            "match_reasons": (base_reasons + alignment_reasons + personalization_reasons)[:4],
+            "image_score": round(image_score, 4),
+            "intent_seed_score": round(seed_score, 4),
+            "base_hybrid_score": round(base_hybrid_score, 4),
+            "hybrid_score": round(base_hybrid_score, 4),
+            "matched_modalities": [
+                modality
+                for modality, enabled in [("text", text_score > 0 or lexical_score > 0), ("image", image_score > 0)]
+                if enabled
+            ],
+            "match_reasons": [],
         }
         merged.append(product)
 
-    merged.sort(key=lambda product: product["match_debug"]["hybrid_score"], reverse=True)
-    return merged[:top_k]
+    merged.sort(key=lambda product: product["match_debug"]["base_hybrid_score"], reverse=True)
+    return merged[:candidate_pool_size]
+
+
+def _score_margin(candidates: list[dict[str, Any]]) -> float:
+    if len(candidates) < 2:
+        return float("inf")
+    first = float(candidates[0].get("match_debug", {}).get("hybrid_score", 0.0))
+    second = float(candidates[1].get("match_debug", {}).get("hybrid_score", 0.0))
+    return abs(first - second)
+
+
+def _should_apply_llm_reranking(query: str, mode: str, candidates: list[dict[str, Any]]) -> bool:
+    if not settings.enable_llm_reranking or not query.strip():
+        return False
+    if mode.lower() not in settings.normalized_llm_rerank_modes:
+        return False
+    if len(candidates) <= 1:
+        return False
+
+    # Multimodal cases are the main high-value target. For other enabled modes,
+    # only spend LLM cost when the heuristic ranking is genuinely ambiguous.
+    if mode == "multimodal":
+        return True
+    return _score_margin(candidates) <= settings.llm_rerank_margin_threshold
 
 
 def retrieve_products(
@@ -270,12 +238,15 @@ def retrieve_products(
     top_k = top_k or max(settings.text_top_k, settings.image_top_k)
     query = (query or "").strip()
 
-    keyword_scores = _collect_keyword_scores(query) if query else {}
-    dense_scores = _collect_dense_text_scores(query, top_k=max(top_k * 2, 6)) if query else {}
-    image_scores = _collect_image_scores(image, top_k=max(top_k * 2, 6)) if image is not None else {}
-
     if not query and image is None:
         return []
+
+    candidate_pool_size = max(settings.rerank_candidate_pool_size, top_k * 2, 6)
+    intents = detect_query_intents(query)
+    keyword_scores = _collect_keyword_scores(query) if query else {}
+    dense_scores = _collect_dense_text_scores(query, top_k=candidate_pool_size) if query else {}
+    image_scores = _collect_image_scores(image, top_k=candidate_pool_size) if image is not None else {}
+    seed_scores = _intent_seed_scores(query, intents) if query and mode in {"text", "multimodal"} else {}
 
     if mode == "image":
         text_weight, lexical_weight, image_weight = 0.05, 0.0, 0.95
@@ -294,16 +265,128 @@ def retrieve_products(
         personalization_scale = 1.0
         rerank_scale = 0.15
 
-    return _merge_candidates(
-        query or "image search",
+    candidates = _merge_candidates(
         keyword_scores,
         dense_scores,
         image_scores,
-        user_profile,
-        top_k,
+        seed_scores,
+        candidate_pool_size=candidate_pool_size,
         text_weight=text_weight,
         lexical_weight=lexical_weight,
         image_weight=image_weight,
+    )
+    if not settings.enable_reranking:
+        return candidates[:top_k]
+
+    reranked = rerank_products(
+        query=query or "image search",
+        candidates=candidates,
+        user_profile=user_profile,
+        mode=mode,
         personalization_scale=personalization_scale,
         rerank_scale=rerank_scale,
+        top_k=top_k,
     )
+    if _should_apply_llm_reranking(query, mode, reranked):
+        reranked = llm_rerank_products(
+            query=query,
+            candidates=reranked,
+            mode=mode,
+            top_n=min(settings.llm_rerank_top_n, len(reranked)),
+        )
+    return reranked[:top_k]
+
+
+def retrieve_products_debug(
+    query: str | None = None,
+    image=None,
+    user_profile: dict[str, Any] | None = None,
+    top_k: int | None = None,
+    mode: str = "text",
+    generic_visual_query: bool = False,
+) -> dict[str, Any]:
+    top_k = top_k or max(settings.text_top_k, settings.image_top_k)
+    query = (query or "").strip()
+
+    if not query and image is None:
+        return {
+            "mode": mode,
+            "query": query,
+            "candidate_pool": [],
+            "heuristic_reranked": [],
+            "llm_reranked": [],
+            "final_results": [],
+        }
+
+    candidate_pool_size = max(settings.rerank_candidate_pool_size, top_k * 2, 6)
+    intents = detect_query_intents(query)
+    keyword_scores = _collect_keyword_scores(query) if query else {}
+    dense_scores = _collect_dense_text_scores(query, top_k=candidate_pool_size) if query else {}
+    image_scores = _collect_image_scores(image, top_k=candidate_pool_size) if image is not None else {}
+    seed_scores = _intent_seed_scores(query, intents) if query and mode in {"text", "multimodal"} else {}
+
+    if mode == "image":
+        text_weight, lexical_weight, image_weight = 0.05, 0.0, 0.95
+        personalization_scale = 0.1
+        rerank_scale = 0.06
+    elif mode == "multimodal":
+        if generic_visual_query:
+            text_weight, lexical_weight, image_weight = 0.15, 0.05, 0.80
+            personalization_scale = 0.2
+        else:
+            text_weight, lexical_weight, image_weight = 0.35, 0.15, 0.50
+            personalization_scale = 0.45
+        rerank_scale = 0.10
+    else:
+        text_weight, lexical_weight, image_weight = 0.50, 0.30, 0.20
+        personalization_scale = 1.0
+        rerank_scale = 0.15
+
+    candidates = _merge_candidates(
+        keyword_scores,
+        dense_scores,
+        image_scores,
+        seed_scores,
+        candidate_pool_size=candidate_pool_size,
+        text_weight=text_weight,
+        lexical_weight=lexical_weight,
+        image_weight=image_weight,
+    )
+    if not settings.enable_reranking:
+        final_results = candidates[:top_k]
+        return {
+            "mode": mode,
+            "query": query,
+            "candidate_pool": candidates,
+            "heuristic_reranked": candidates,
+            "llm_reranked": candidates,
+            "final_results": final_results,
+        }
+
+    heuristic_reranked = rerank_products(
+        query=query or "image search",
+        candidates=candidates,
+        user_profile=user_profile,
+        mode=mode,
+        personalization_scale=personalization_scale,
+        rerank_scale=rerank_scale,
+        top_k=top_k,
+    )
+    llm_reranked = heuristic_reranked
+    if _should_apply_llm_reranking(query, mode, heuristic_reranked):
+        llm_reranked = llm_rerank_products(
+            query=query,
+            candidates=heuristic_reranked,
+            mode=mode,
+            top_n=min(settings.llm_rerank_top_n, len(heuristic_reranked)),
+        )
+
+    final_results = llm_reranked[:top_k]
+    return {
+        "mode": mode,
+        "query": query,
+        "candidate_pool": candidates,
+        "heuristic_reranked": heuristic_reranked,
+        "llm_reranked": llm_reranked,
+        "final_results": final_results,
+    }
