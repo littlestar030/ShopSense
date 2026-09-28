@@ -17,7 +17,7 @@ class Settings(BaseSettings):
         extra="ignore",
     )
 
-    app_name: str = "AI Commerce Agent"
+    app_name: str = "ShopSense"
     environment: str = "development"
     log_level: str = "INFO"
     third_party_log_level: str = "WARNING"

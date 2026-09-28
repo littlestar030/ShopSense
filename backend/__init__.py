@@ -1,1 +1,1 @@
-"""Backend package for the AI Commerce Agent."""
+"""Backend package for ShopSense."""

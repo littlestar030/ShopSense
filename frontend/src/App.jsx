@@ -209,7 +209,7 @@ export default function App({ mode, toggleMode }) {
       <AppBar position="static" color="default" elevation={1}>
         <Toolbar>
           <Typography variant="h6" sx={{ flexGrow: 1 }}>
-            AI Commerce Assistant
+            ShopSense
           </Typography>
           <IconButton onClick={toggleMode} color="inherit">
             {mode === 'light' ? <DarkModeIcon /> : <LightModeIcon />}

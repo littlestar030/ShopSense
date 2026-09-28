@@ -1,8 +1,8 @@
-# AI Commerce Agent
+# ShopSense
 
 A full-stack AI shopping assistant built with React and FastAPI. It supports conversational product discovery, image-based retrieval, hybrid retrieval, multimodal search, and lightweight personalization on top of a processed fashion product catalog.
 
-![AI Commerce Agent Demo](./demo.gif)
+![ShopSense Demo](./demo.gif)
 
 ## Highlights
 

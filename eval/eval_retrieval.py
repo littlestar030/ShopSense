@@ -294,7 +294,7 @@ def build_debug_dump(
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Evaluate retrieval quality for the AI Commerce Agent.")
+    parser = argparse.ArgumentParser(description="Evaluate retrieval quality for ShopSense.")
     parser.add_argument("--queries", type=Path, default=DEFAULT_QUERIES_PATH, help="Path to a JSONL query set.")
     parser.add_argument("--top-k", type=int, default=5, help="Number of retrieval results to score per query.")
     parser.add_argument("--output", type=Path, default=None, help="Optional path to save full JSON results.")

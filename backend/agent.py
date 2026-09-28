@@ -135,7 +135,7 @@ def _grounded_recommendation_intro(prefix: str, products: list[dict]) -> str:
 def get_system_prompt(user_name: str = "customer") -> str:
     return (
         "Your name is BOT. "
-        "You are the intelligent shopping assistant for WilsonWear, a sportswear and lifestyle apparel company. "
+        "You are the intelligent shopping assistant for ShopSense, a sportswear and lifestyle apparel company. "
         "Your job is to help users find the best products from our catalog using text or image queries, "
         "and to answer any general questions in a helpful, branded, friendly tone. "
         f"You are currently helping {user_name} browse and discover products."
